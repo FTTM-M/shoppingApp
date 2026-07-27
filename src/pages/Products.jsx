@@ -1,5 +1,5 @@
 import { useProducts } from "../context/ProductContext";
-
+import ProductCards from "../components/ProductCards";
 
 import styles from "./Product.module.css"
 
@@ -11,7 +11,7 @@ function Products() {
       {!products.length && <p>Loading ...</p>}
       <div className={styles.product}>
         {products.map((product) => (
-          <p key={product.id}>{product.title}</p>
+         <ProductCards  key={product.id} data={product}/>
         ))}
       </div>
     </div>
