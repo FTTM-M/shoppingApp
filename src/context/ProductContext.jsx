@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import api from "../services/config";
 
 const productContext = createContext();
@@ -9,7 +9,7 @@ function ProductProvider({ children }) {
   useEffect(() => {
     const Fetch = async () => {
       try {
-        setResponse(api.get("/product"));
+        setResponse(await api.get("/products"));
       } catch (error) {
         console.log(error.message);
       }
@@ -24,4 +24,10 @@ function ProductProvider({ children }) {
   );
 }
 
+const useProducts = () => {
+  const products = useContext(productContext);
+  return products;
+};
+
 export default ProductProvider;
+export { useProducts };
