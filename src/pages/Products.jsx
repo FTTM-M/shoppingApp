@@ -8,9 +8,10 @@ function Products() {
   const products = useProducts();
   // console.log(products);
   return (
-    <div>
-      {!products.length && <Loading />}
-      <div className={styles.product}>
+    <div className={styles.container}>
+     
+      <div className={styles.product}> 
+        {!products.length && <Loading />}
         {products.map((product) => (
           <ProductCards key={product.id} data={product} />
         ))}
