@@ -3,21 +3,25 @@ import ProductCards from "../components/ProductCards";
 
 import styles from "./Product.module.css";
 import Loading from "../components/Loading";
+import SearchedProducts from "../components/helper/helper";
 import { ImSearch } from "react-icons/im";
 import { useEffect, useState } from "react";
 import { FaListUl } from "react-icons/fa";
 
 function Products() {
-  const [search, setSerach] = useState("");
+  const [search, setSearch] = useState("");
   const [display, setDisplay] = useState([]);
   const [query, setQuery] = useState({});
   const products = useProducts();
   // console.log(products);
 
-  useEffect(() => setDisplay(products), [products]);
+  useEffect(() => {
+    setDisplay(products);
+  }, [products]);
 
   useEffect(() => {
-    console.log(query);
+    let searchedProducts = SearchedProducts(products, query.search);
+    setDisplay(searchedProducts);
   }, [query]);
 
   const ButtonHandler = () => {
@@ -41,7 +45,7 @@ function Products() {
           type="text"
           placeholder="Search..."
           value={search}
-          onChange={(e) => setSerach(e.target.value.toLocaleLowerCase().trim())}
+          onChange={(e) => setSearch(e.target.value.toLocaleLowerCase().trim())}
         />
         <button onClick={ButtonHandler}>
           <ImSearch />
