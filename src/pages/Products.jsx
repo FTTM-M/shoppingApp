@@ -4,16 +4,24 @@ import ProductCards from "../components/ProductCards";
 import styles from "./Product.module.css";
 import Loading from "../components/Loading";
 import { ImSearch } from "react-icons/im";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaListUl } from "react-icons/fa";
 
 function Products() {
   const [search, setSerach] = useState("");
+  const [display, setDisplay] = useState([]);
+  const [query, setQuery] = useState({});
   const products = useProducts();
   // console.log(products);
 
+  useEffect(() => setDisplay(products), [products]);
+
+  useEffect(() => {
+    console.log(query);
+  }, [query]);
+
   const ButtonHandler = () => {
-    console.log(search);
+    setQuery({ ...query, search });
   };
 
   const CategoriesHandler = (event) => {
@@ -23,7 +31,7 @@ function Products() {
 
     if (tagName !== "LI") return;
 
-    console.log(category);
+    setQuery({ ...query, category });
   };
 
   return (
@@ -41,8 +49,8 @@ function Products() {
       </div>
       <div className={styles.container}>
         <div className={styles.product}>
-          {!products.length && <Loading />}
-          {products.map((product) => (
+          {!display.length && <Loading />}
+          {display.map((product) => (
             <ProductCards key={product.id} data={product} />
           ))}
         </div>
