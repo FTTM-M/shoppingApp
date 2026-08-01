@@ -3,12 +3,19 @@ const Title = (title) => {
 };
 
 const SearchedProducts = (products, search) => {
-  console.log({ products, search });
+  // console.log({ products, search });
   if (!search) return products;
-  const filteredProducts = products.filter((p) =>
+  const searchProducts = products.filter((p) =>
     p.title.toLowerCase().includes(search),
   );
-  return filteredProducts;
+  return searchProducts;
 };
 
-export  { Title, SearchedProducts };
+
+const filteredProducts=(products ,category)=>{
+  if(!category)return products;
+  const filterProducts = products.filter((p)=> p.category === category)
+  return filterProducts
+}
+
+export  { Title, SearchedProducts , filteredProducts};

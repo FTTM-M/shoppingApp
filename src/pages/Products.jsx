@@ -3,7 +3,10 @@ import ProductCards from "../components/ProductCards";
 
 import styles from "./Product.module.css";
 import Loading from "../components/Loading";
-import { SearchedProducts } from "../components/helper/helper";
+import {
+  filteredProducts,
+  SearchedProducts,
+} from "../components/helper/helper";
 import { ImSearch } from "react-icons/im";
 import { useEffect, useState } from "react";
 import { FaListUl } from "react-icons/fa";
@@ -20,8 +23,11 @@ function Products() {
   }, [products]);
 
   useEffect(() => {
-    let searchedProducts = SearchedProducts(products, query.search);
-    setDisplay(searchedProducts);
+    console.log(products);
+    console.log(search, query.category);
+    let finalProducts = SearchedProducts(products, query.search);
+    // finalProducts = ;
+    setDisplay(filteredProducts(finalProducts, query.category));
   }, [query]);
 
   const ButtonHandler = () => {
@@ -67,8 +73,8 @@ function Products() {
             <li>All</li>
             <li>Electronics</li>
             <li>jewelery</li>
-            <li>Man's Clothing</li>
-            <li>Woman's Clothing</li>
+            <li>Men's Clothing</li>
+            <li>Women's Clothing</li>
           </ul>
         </div>
       </div>
