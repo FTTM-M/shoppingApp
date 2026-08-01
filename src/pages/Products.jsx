@@ -3,7 +3,7 @@ import ProductCards from "../components/ProductCards";
 
 import styles from "./Product.module.css";
 import Loading from "../components/Loading";
-import SearchedProducts from "../components/helper/helper";
+import { SearchedProducts } from "../components/helper/helper";
 import { ImSearch } from "react-icons/im";
 import { useEffect, useState } from "react";
 import { FaListUl } from "react-icons/fa";
@@ -20,6 +20,8 @@ function Products() {
   }, [products]);
 
   useEffect(() => {
+    console.log(query);
+    setDisplay(SearchedProducts(products, query.search));
     let searchedProducts = SearchedProducts(products, query.search);
     setDisplay(searchedProducts);
   }, [query]);

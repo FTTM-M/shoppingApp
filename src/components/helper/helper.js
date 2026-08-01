@@ -3,6 +3,7 @@ const Title = (title) => {
 };
 
 const SearchedProducts = (products, search) => {
+  console.log({ products, search });
   if (!search) return products;
   const filteredProducts = products.filter((p) =>
     p.title.toLowerCase().includes(search),
@@ -10,4 +11,4 @@ const SearchedProducts = (products, search) => {
   return filteredProducts;
 };
 
-export { Title, SearchedProducts };
+export  { Title, SearchedProducts };
