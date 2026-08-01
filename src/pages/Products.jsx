@@ -20,8 +20,6 @@ function Products() {
   }, [products]);
 
   useEffect(() => {
-    console.log(query);
-    setDisplay(SearchedProducts(products, query.search));
     let searchedProducts = SearchedProducts(products, query.search);
     setDisplay(searchedProducts);
   }, [query]);
