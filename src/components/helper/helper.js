@@ -29,4 +29,13 @@ const createQuery = (currentQuery, newquery) => {
   return { ...currentQuery, ...newquery };
 };
 
-export { Title, SearchedProducts, filteredProducts , createQuery };
+const initialDatas = (searchParams) => {
+  const query = {};
+  const category = searchParams.get("category");
+  const search = searchParams.get("search");
+  if (category) query.category = category;
+  if (search) query.search = search;
+  return query;
+};
+
+export { Title, SearchedProducts, filteredProducts, createQuery, initialDatas };

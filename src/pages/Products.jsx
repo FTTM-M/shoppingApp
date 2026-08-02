@@ -6,6 +6,7 @@ import Loading from "../components/Loading";
 import {
   createQuery,
   filteredProducts,
+  initialDatas,
   SearchedProducts,
 } from "../components/helper/helper";
 import { ImSearch } from "react-icons/im";
@@ -23,6 +24,8 @@ function Products() {
 
   useEffect(() => {
     setDisplay(products);
+    setSearch(query.search || "");
+    setQuery(initialDatas(searchParams));
   }, [products]);
 
   useEffect(() => {
@@ -30,7 +33,6 @@ function Products() {
     // console.log(products);
     // console.log(search, query.category);
     let finalProducts = SearchedProducts(products, query.search);
-    // finalProducts = ;
     setDisplay(filteredProducts(finalProducts, query.category));
   }, [query]);
 
