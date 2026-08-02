@@ -4,17 +4,20 @@ import ProductCards from "../components/ProductCards";
 import styles from "./Product.module.css";
 import Loading from "../components/Loading";
 import {
+  createQuery,
   filteredProducts,
   SearchedProducts,
 } from "../components/helper/helper";
 import { ImSearch } from "react-icons/im";
 import { useEffect, useState } from "react";
 import { FaListUl } from "react-icons/fa";
+import { useSearchParams } from "react-router-dom";
 
 function Products() {
   const [search, setSearch] = useState("");
   const [display, setDisplay] = useState([]);
   const [query, setQuery] = useState({});
+  const [searchParams, setSearchParams] = useSearchParams();
   const products = useProducts();
   // console.log(products);
 
@@ -23,15 +26,16 @@ function Products() {
   }, [products]);
 
   useEffect(() => {
-    console.log(products);
-    console.log(search, query.category);
+    setSearchParams(query);
+    // console.log(products);
+    // console.log(search, query.category);
     let finalProducts = SearchedProducts(products, query.search);
     // finalProducts = ;
     setDisplay(filteredProducts(finalProducts, query.category));
   }, [query]);
 
   const ButtonHandler = () => {
-    setQuery({ ...query, search });
+    setQuery((query) => createQuery(query, { search }));
   };
 
   const CategoriesHandler = (event) => {
@@ -41,7 +45,7 @@ function Products() {
 
     if (tagName !== "LI") return;
 
-    setQuery({ ...query, category });
+    setQuery((query) => createQuery(query, { category }));
   };
 
   return (

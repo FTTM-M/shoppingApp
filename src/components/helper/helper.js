@@ -11,11 +11,22 @@ const SearchedProducts = (products, search) => {
   return searchProducts;
 };
 
+const filteredProducts = (products, category) => {
+  if (!category) return products;
+  const filterProducts = products.filter((p) => p.category === category);
+  return filterProducts;
+};
 
-const filteredProducts=(products ,category)=>{
-  if(!category)return products;
-  const filterProducts = products.filter((p)=> p.category === category)
-  return filterProducts
-}
+const createQuery = (currentQuery, newquery) => {
+  if (newquery.category === "all") {
+    const { category, ...rest } = currentQuery;
+    return rest;
+  }
+  if (newquery.search === "") {
+    const { search, ...rest } = currentQuery;
+    return rest;
+  }
+  return { ...currentQuery, ...newquery };
+};
 
-export  { Title, SearchedProducts , filteredProducts};
+export { Title, SearchedProducts, filteredProducts , createQuery };
