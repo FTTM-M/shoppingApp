@@ -43,8 +43,7 @@ const sumiation = (product) => {
   const total_price = product
     .reduce((total, curr) => total + curr.price * curr.quantity)
     .toFixed(2);
-
-  return {counter, total_price};
+  return { counter, total_price };
 };
 
 export {

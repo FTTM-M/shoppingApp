@@ -4,7 +4,7 @@ import { sumiation } from "../components/helper/helper";
 const CardContext = createContext();
 
 const initialState = {
-  slectedItems: [],
+  selectedItems: [],
   counteItems: 0,
   total: 0,
   checkeOut: false,
@@ -13,13 +13,13 @@ const initialState = {
 const reducer = (state, action) => {
   switch (action.type) {
     case "ADD_ITEMS":
-      if (!state.slectedItems.find((item) => item.id === action.payload.id)) {
+      if (!state.selectedItems.find((item) => item.id === action.payload.id)) {
         state.selectedItems.push({ ...action.payload, quantity: 1 });
       }
       return { ...state, checkeOut: false, ...sumiation(state.selectedItems) };
 
     default:
-      throw new error("invalid");
+      throw new Error("invalid");
   }
 };
 
