@@ -38,4 +38,20 @@ const initialDatas = (searchParams) => {
   return query;
 };
 
-export { Title, SearchedProducts, filteredProducts, createQuery, initialDatas };
+const sumiation = (product) => {
+  const counter = product.reduce((count, curr) => count + curr.quantity, 0);
+  const total_price = product
+    .reduce((total, curr) => total + curr.price * curr.quantity)
+    .toFixed(2);
+
+  return {counter, total_price};
+};
+
+export {
+  Title,
+  SearchedProducts,
+  filteredProducts,
+  createQuery,
+  initialDatas,
+  sumiation,
+};

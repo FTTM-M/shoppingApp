@@ -1,11 +1,26 @@
 import { createContext, useContext, useReducer } from "react";
+import { sumiation } from "../components/helper/helper";
 
 const CardContext = createContext();
 
-const initialState = {};
+const initialState = {
+  slectedItems: [],
+  counteItems: 0,
+  total: 0,
+  checkeOut: false,
+};
 
 const reducer = (state, action) => {
-  console.log(action);
+  switch (action.type) {
+    case "ADD_ITEMS":
+      if (!state.slectedItems.find((item) => item.id === action.payload.id)) {
+        state.selectedItems.push({ ...action.payload, quantity: 1 });
+      }
+      return { ...state, checkeOut: false, ...sumiation(state.selectedItems) };
+
+    default:
+      throw new error("invalid");
+  }
 };
 
 function CardContextProvider({ children }) {
