@@ -17,6 +17,36 @@ const reducer = (state, action) => {
         state.selectedItems.push({ ...action.payload, quantity: 1 });
       }
       return { ...state, checkeOut: false, ...sumiation(state.selectedItems) };
+    case "  removE_ITEMS": {
+      const newSelectedItems = state.selectedItems.filter(
+        (item) => item.id !== action.payload.id,
+      );
+      return {
+        ...state,
+        checkeOut: false,
+        selectedItems: [...newSelectedItems],
+        ...sumiation(newSelectedItems),
+      };
+    }
+
+    case "INCREASE": {
+      const increaseIndex = state.selectedItems.findIndex(
+        (item) => item.id === action.payload.id,
+      );
+      state.selectedItems[increaseIndex].quantity++;
+      return { ...state, checkeOut: false, ...sumiation(state.selectedItems) };
+    }
+    case "DECREASE": {
+      const decreaseIndex = state.selectedItems.findIndex(
+        (item) => item.id === action.payload.id,
+      );
+      state.selectedItems[decreaseIndex].quantity__;
+
+      return { ...state, checkeOut: false, ...sumiation(state.selectedItems) };
+    }
+
+    case "CHECKOUT":
+      return { selectedItems: [], counteItems: 0, total: 0, checkeOut: true };
 
     default:
       throw new Error("invalid");
