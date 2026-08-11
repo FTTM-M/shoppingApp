@@ -41,9 +41,14 @@ const initialDatas = (searchParams) => {
 const sumiation = (product) => {
   const counter = product.reduce((count, curr) => count + curr.quantity, 0);
   const total_price = product
-    .reduce((total, curr) => total + curr.price * curr.quantity)
+    .reduce((total, curr) => total + curr.price * curr.quantity, 0)
     .toFixed(2);
   return { counter, total_price };
+};
+const quantityHandler = (state, id) => {
+  const index = state.selectedItems.findIndex((item) => item.id === id);
+  if (index === -1) return 0;
+  else return state.selectedItems[index].quantity;
 };
 
 export {
@@ -53,4 +58,5 @@ export {
   createQuery,
   initialDatas,
   sumiation,
+  quantityHandler,
 };

@@ -17,7 +17,7 @@ const reducer = (state, action) => {
         state.selectedItems.push({ ...action.payload, quantity: 1 });
       }
       return { ...state, checkeOut: false, ...sumiation(state.selectedItems) };
-    case "  removE_ITEMS": {
+    case "REMOVE_ITEMS": {
       const newSelectedItems = state.selectedItems.filter(
         (item) => item.id !== action.payload.id,
       );
@@ -40,7 +40,7 @@ const reducer = (state, action) => {
       const decreaseIndex = state.selectedItems.findIndex(
         (item) => item.id === action.payload.id,
       );
-      state.selectedItems[decreaseIndex].quantity__;
+      state.selectedItems[decreaseIndex].quantity--;
 
       return { ...state, checkeOut: false, ...sumiation(state.selectedItems) };
     }
