@@ -11,11 +11,11 @@ function ProductCards({ data }) {
   const [state, dispatch] = useCard();
 
   const quantity = quantityHandler(state, id);
-  console.log(state);
+  // console.log(state);
 
   const clickHandler = (type) => {
     dispatch({ type, payload: data });
-    console.log(state);
+    // console.log(state);
   };
 
   return (
