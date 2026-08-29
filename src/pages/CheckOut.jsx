@@ -2,6 +2,8 @@ import Basket from "../components/Basket";
 import Basketsidebar from "../components/Basketsidebar";
 import { useCard } from "../context/CardContext";
 
+import styles from "./CheckOut.module.css"
+
 function CheckOut() {
   const [state, dispatch] = useCard();
   const clickHandler = (type, payload) => {
@@ -15,9 +17,9 @@ function CheckOut() {
   }
 
   return (
-    <div>
+    <div className={styles.container}>
       <Basketsidebar state={state} clickHandler={clickHandler} />
-      <div>
+      <div  className={styles.products}>
         {state.selectedItems.map((product) => (
           <Basket
             key={product.id}
